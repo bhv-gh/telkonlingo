@@ -1,0 +1,1 @@
+This is duolingo type thing but for telugu and gsb konkani
