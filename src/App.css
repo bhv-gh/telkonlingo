@@ -1,15 +1,30 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevent scrolling on the body */
+}
+
 .App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   text-align: center;
-  padding: 0 40px;
 }
 
 .App-header {
+  flex-shrink: 0; /* Prevent header from shrinking */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  padding: 15px 40px;
   border-bottom: 1px solid #dee2e6;
   margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  background: white; /* Add background to prevent content from showing through */
+  z-index: 10;
 }
 
 .app-title {
@@ -38,8 +53,8 @@
 
 .main-content {
   flex-grow: 1;
-  padding: 40px 0;
-  overflow: auto;
+  overflow-y: auto; /* Make this the scrollable container */
+  padding: 20px 40px;
 }
 
 .tab-nav {
@@ -81,6 +96,9 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  position: sticky;
+  top: 20px; /* Adjust this value to control the top offset when sticky */
+  align-self: flex-start;
 }
 
 .dictionary-right-column {
