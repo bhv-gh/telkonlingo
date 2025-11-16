@@ -5,6 +5,7 @@
 
 .App-header {
   padding: 40px 0;
+  position: relative;
   border-bottom: 1px solid #dee2e6;
   margin-bottom: 20px;
 }
@@ -20,6 +21,25 @@
   font-size: 0.9em;
   color: #6c757d; /* Muted secondary text */
   margin-bottom: 0;
+}
+
+.settings-button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  color: #6c757d;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.settings-button:hover {
+  background-color: #f1f3f5;
+  color: #007bff;
 }
 
 .main-content {

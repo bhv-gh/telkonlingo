@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import './DataTable.css'; // Import the dedicated stylesheet
 
-const DataTable = ({ data, onDeleteEntry, onUpdateEntry }) => {
+const DataTable = ({ data, onDeleteEntry, onUpdateEntry, settings }) => {
   const [editingCell, setEditingCell] = useState(null); // { rowIndex, header }
   const [editValue, setEditValue] = useState('');
 
-  const headers = data.length > 0 ? Object.keys(data[0]) : [];
+  const allHeaders = data.length > 0 ? Object.keys(data[0]) : [];
+  // Filter headers based on settings
+  const headers = allHeaders.filter(header => {
+    if (header === 'Konkani' && settings.learningLanguage !== 'Konkani') return false;
+    if (header === 'Telugu' && settings.learningLanguage !== 'Telugu') return false;
+    return true;
+  });
 
   const handleDoubleClick = (rowIndex, header, value) => {
     setEditingCell({ rowIndex, header });

@@ -1,0 +1,148 @@
+.quiz-container {
+    background-color: #ffffff;
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.quiz-container.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    background-color: #fff0f0; /* A subtle red flash for the background */
+}
+
+.quiz-container.correct-flash {
+    background-color: #f0fff4; /* A subtle green flash for the background */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.quiz-header {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.score {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.question-area {
+    margin-bottom: 30px;
+}
+
+.question-prompt {
+    font-size: 1em;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.question-text {
+    font-size: 1.8em;
+    font-weight: 500;
+    color: #212529;
+    margin: 0;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.option-button {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #212529;
+    padding: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.option-button:not(:disabled):hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    transform: translateY(-2px);
+}
+
+.option-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.option-button.correct {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    transform: scale(1.05); /* The "winning" button grows */
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.6); /* Enhanced green glow */
+    z-index: 1; /* Ensure it's on top of other faded buttons */
+}
+
+.option-button.incorrect {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    opacity: 0.7; /* The "losing" button looks slightly defeated */
+}
+
+.option-button.faded {
+    opacity: 0.4;
+    transform: scale(0.95); /* The other wrong answers shrink away */
+}
+
+.quiz-footer {
+    margin-top: 30px;
+    height: 30px; /* Reserve space for the feedback message */
+    text-align: center;
+}
+
+.feedback-message {
+    font-size: 1.2em;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.feedback-message.correct-feedback {
+    color: #28a745;
+    opacity: 1;
+}
+
+.feedback-message.incorrect-feedback {
+    color: #dc3545;
+    opacity: 1;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@media (max-width: 600px) {
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .question-text {
+        font-size: 1.5em;
+    }
+
+    .option-button {
+        padding: 15px;
+    }
+}

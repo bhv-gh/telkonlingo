@@ -1,0 +1,89 @@
+.learn-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.learn-container h2 {
+    font-size: 2em;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.learn-container p {
+    font-size: 1.1em;
+    color: #6c757d;
+    margin-bottom: 40px;
+}
+
+.game-selection-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.game-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.game-card h3 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.game-card p {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.game-fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f1f3f5;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dee2e6' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    z-index: 1000;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.close-game-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #e9ecef;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.close-game-button:hover {
+    background-color: #ced4da;
+    color: #343a40;
+}
