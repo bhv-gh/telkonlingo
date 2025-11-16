@@ -96,3 +96,12 @@
 .play-again-button:hover {
     background-color: #0056b3;
 }
+
+@media (max-width: 600px) {
+    .matching-game-columns {
+        flex-direction: column;
+    }
+    .word-column {
+        width: 100%;
+    }
+}
