@@ -11,10 +11,10 @@
     "localforage": "^1.10.0",
     "papaparse": "^5.5.3",
     "react": "^19.2.0",
-    "react-archer": "^4.4.0",
     "react-confetti": "^6.4.0",
     "react-dom": "^19.2.0",
     "react-scripts": "5.0.1",
+    "react-xarrows": "^2.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

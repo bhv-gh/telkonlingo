@@ -1,6 +1,7 @@
 .matching-game-container {
     width: 100%;
     max-width: 900px;
+    position: relative;
     margin: auto;
     padding: 20px;
     box-sizing: border-box;

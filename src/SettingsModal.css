@@ -101,3 +101,30 @@
 .done-button:hover {
     background-color: #0056b3;
 }
+
+.divider {
+    height: 1px;
+    background-color: #dee2e6;
+    margin: 25px 0;
+}
+
+.data-management-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.secondary-button {
+    flex-grow: 1;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.secondary-button:hover {
+    background-color: #5a6268;
+}

@@ -1,0 +1,170 @@
+.bubble-game-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-area {
+    flex-grow: 1;
+    position: relative;
+}
+
+.bubble {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #e0f7ff, #007bff 90%);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+}
+
+/* Fancy specular highlight */
+.bubble::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 40px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    filter: blur(10px);
+    transform: rotate(-30deg);
+}
+
+.bubble:hover {
+    transform: scale(1.1);
+}
+
+.bubble-inner {
+    color: #0056b3;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+/* Animations */
+.bubble.burst {
+    animation: burst 0.4s ease-out forwards;
+}
+
+.bubble.disperse {
+    animation: disperse 0.4s ease-out forwards;
+}
+
+@keyframes burst {
+    0% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes disperse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0; background: radial-gradient(circle at 50% 50%, #ffdddd, #ff8888 80%); }
+}
+
+/* Bottom Bar */
+.word-sequence-bar {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sequence-word {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+}
+
+.english-word {
+    font-size: 1em;
+    font-weight: 600;
+    color: #495057;
+    margin-right: 15px;
+    text-align: right;
+    width: 100px;
+}
+
+.translation-slot {
+    background-color: #e9ecef;
+    border: 2px dashed #ced4da;
+    border-radius: 6px;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #6c757d;
+    transition: all 0.3s ease-in-out;
+}
+
+.sequence-word.target .translation-slot {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+}
+
+.sequence-word.collected .translation-slot {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+/* Win Overlay (re-using from MatchingGame for consistency) */
+.game-won-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    z-index: 20;
+}
+
+.game-won-overlay h2 {
+    font-size: 3em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.play-again-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.play-again-button:hover {
+    background-color: #0056b3;
+}

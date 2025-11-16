@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import './Quiz.css';
 import Fuse from 'fuse.js';
 import Confetti from 'react-confetti';
@@ -24,7 +24,7 @@ const Quiz = ({ data, settings }) => {
   const phrases = useMemo(() => data.filter(item => item.Type === 'phrase'), [data]);
   const words = useMemo(() => data.filter(item => item.Type === 'word'), [data]);
 
-  const generateQuestion = () => {
+  const generateQuestion = useCallback(() => {
     setSelectedAnswer(null);
     setFeedback('');
     setShowConfetti(false);
@@ -71,13 +71,13 @@ const Quiz = ({ data, settings }) => {
       ...distractors.map(d => d[learningLang])
     ];
     setOptions(shuffleArray(answerOptions));
-  };
+  }, [phrases, words, settings.learningLanguage]);
 
   useEffect(() => {
     if (data.length >= 4) {
       generateQuestion();
     }
-  }, [data, settings.learningLanguage]);
+  }, [data.length, generateQuestion]);
 
   const handleConfettiComplete = () => {
     setShowConfetti(false);

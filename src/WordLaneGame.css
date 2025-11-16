@@ -1,0 +1,227 @@
+.word-lane-container {
+    width: 100%;
+    background: #e9ecef;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 15;
+}
+
+.lives-container {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #495057;
+}
+
+.stat-item {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #495057;
+}
+
+.stat-item span {
+    color: #007bff;
+}
+
+.heart {
+    font-size: 1.5em;
+    margin-left: 5px;
+}
+.heart.full { color: #dc3545; }
+.heart.empty { color: #dee2e6; }
+
+.game-lanes {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 40px 0;
+}
+
+.lane {
+    position: relative;
+    height: 80px;
+}
+
+.word-tile {
+    position: absolute;
+    height: 70px;
+    padding: 0 30px;
+    background-color: #ffffff;
+    color: #343a40;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    white-space: nowrap;
+    will-change: transform;
+}
+
+.word-tile[draggable="true"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.word-tile.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+}
+
+.word-tile[draggable="false"] {
+    cursor: default;
+    opacity: 0;
+}
+
+/* Animations */
+.word-tile.correct {
+    animation: correct-collect 0.5s ease-in-out forwards;
+}
+
+.word-tile.incorrect {
+    animation: incorrect-shake 0.5s ease-in-out forwards;
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+@keyframes correct-collect {
+    0% {
+        transform: scale(1.1);
+        background-color: #d4edda;
+        box-shadow: 0 0 20px rgba(40, 167, 69, 0.7);
+    }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes incorrect-shake {
+    0% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+    100% { opacity: 1; } /* Keep it visible to show the mistake */
+}
+
+/* Right-side Bar */
+.word-sequence-bar {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%); 
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sequence-word {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+}
+
+.english-word {
+    font-size: 1em;
+    font-weight: 600;
+    color: #495057;
+    margin-right: 15px;
+    text-align: right;
+    width: 100px;
+}
+
+.translation-slot {
+    background-color: #e9ecef;
+    border: 2px dashed #ced4da;
+    border-radius: 6px;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #6c757d;
+    transition: all 0.3s ease-in-out;
+}
+
+.sequence-word.matched .translation-slot {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.sequence-word.target .translation-slot {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+}
+
+
+/* Win Overlay (re-using from MatchingGame for consistency) */
+.game-won-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    z-index: 20;
+}
+
+.game-won-overlay h2 {
+    font-size: 3em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.final-score {
+    font-size: 1.5em;
+    color: #495057;
+    margin-bottom: 30px;
+}
+
+.play-again-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.play-again-button:hover {
+    background-color: #0056b3;
+}

@@ -4,30 +4,21 @@
 }
 
 .App-header {
-  padding: 40px 0;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
   border-bottom: 1px solid #dee2e6;
   margin-bottom: 20px;
 }
 
-.App-header h1 {
+.app-title {
   margin: 0;
-  font-size: 2.5em;
+  font-size: 1.8em;
   color: #007bff; /* Professional Blue Accent */
 }
 
-.App-header p {
-  margin-top: 8px;
-  font-size: 0.9em;
-  color: #6c757d; /* Muted secondary text */
-  margin-bottom: 0;
-}
-
 .settings-button {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
@@ -35,6 +26,9 @@
   border-radius: 50%;
   color: #6c757d;
   transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .settings-button:hover {
@@ -50,8 +44,7 @@
 
 .tab-nav {
   display: flex;
-  justify-content: center;
-  border-bottom: 1px solid #dee2e6;
+  gap: 10px;
 }
 
 .tab-button {
@@ -77,10 +70,22 @@
   border-bottom-color: #007bff;
 }
 
-.manage-dictionary-tab {
-  max-width: 500px;
-  margin: 0 auto;
-} 
+.dictionary-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.dictionary-left-column {
+  flex: 0 0 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dictionary-right-column {
+  flex-grow: 1;
+}
 
 /* Generic button styles can live here if they are truly global, */
 /* but for now, component-specific buttons are styled in their own files. */
