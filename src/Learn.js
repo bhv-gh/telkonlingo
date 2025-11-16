@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Quiz from './Quiz';
+import MatchingGame from './MatchingGame';
 import './Learn.css';
 
 const Learn = ({ data, settings }) => {
@@ -9,6 +10,8 @@ const Learn = ({ data, settings }) => {
     switch (activeGame) {
       case 'quiz':
         return <Quiz data={data} settings={settings} />;
+      case 'matching':
+        return <MatchingGame data={data} settings={settings} />;
       default:
         return null;
     }
@@ -25,7 +28,10 @@ const Learn = ({ data, settings }) => {
               <h3>Quiz</h3>
               <p>Test your vocabulary with multiple-choice questions.</p>
             </div>
-            {/* You can add more game cards here in the future */}
+            <div className="game-card" onClick={() => setActiveGame('matching')}>
+              <h3>Matching Game</h3>
+              <p>Draw lines to match words with their translations.</p>
+            </div>
           </div>
         </>
       ) : (
