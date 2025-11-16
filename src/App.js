@@ -3,11 +3,15 @@ import './App.css';
 import FileUpload from './components/FileUpload/FileUpload';
 import DataTable from './components/DataTable/DataTable';
 import AddEntryForm from './components/AddEntryForm/AddEntryForm';
+import Search from './Search';
 import { parseCSV } from './utils';
 import localforage from 'localforage';
+import Fuse from 'fuse.js';
 
 function App() {
-  const [data, setData] = useState([]);  const [activeTab, setActiveTab] = useState('view');
+  const [data, setData] = useState([]);
+  const [activeTab, setActiveTab] = useState('view');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     localforage.getItem('telkonlingoData').then((storedData) => {
@@ -50,6 +54,21 @@ function App() {
     localforage.setItem('telkonlingoData', newData);
   };
 
+  // Fuzzy search setup
+  const fuse = new Fuse(data, {
+    keys: ['English', 'Telugu', 'Konkani'],
+    includeScore: true,
+    threshold: 0.4,
+  });
+
+  const searchResults = searchQuery ? fuse.search(searchQuery).map(result => result.item) : data;
+
+  const handleSearchChange = (query) => {
+    setSearchQuery(query);
+  };
+
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -72,11 +91,18 @@ function App() {
       </div>
       <div className="main-content">
         {activeTab === 'view' && (
-          <DataTable
-            data={data}
-            onDeleteEntry={handleDeleteEntry}
-            onUpdateEntry={handleUpdateEntry}
-          />
+          <>
+            <Search
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder="Fuzzy search in your dictionary..."
+            />
+            <DataTable
+              data={searchResults}
+              onDeleteEntry={handleDeleteEntry}
+              onUpdateEntry={handleUpdateEntry}
+            />
+          </>
         )}
         {activeTab === 'manage' && (
           <div className="manage-dictionary-tab">
