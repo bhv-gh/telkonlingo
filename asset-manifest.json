@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.5b4e0889.css",
-    "main.js": "/static/js/main.8c67a82c.js",
-    "static/js/453.f621e558.chunk.js": "/static/js/453.f621e558.chunk.js",
-    "index.html": "/index.html",
-    "main.5b4e0889.css.map": "/static/css/main.5b4e0889.css.map",
-    "main.8c67a82c.js.map": "/static/js/main.8c67a82c.js.map",
-    "453.f621e558.chunk.js.map": "/static/js/453.f621e558.chunk.js.map"
+    "main.css": "/telkonlingo/static/css/main.5b4e0889.css",
+    "main.js": "/telkonlingo/static/js/main.64abf78b.js",
+    "static/js/453.f621e558.chunk.js": "/telkonlingo/static/js/453.f621e558.chunk.js",
+    "index.html": "/telkonlingo/index.html",
+    "main.5b4e0889.css.map": "/telkonlingo/static/css/main.5b4e0889.css.map",
+    "main.64abf78b.js.map": "/telkonlingo/static/js/main.64abf78b.js.map",
+    "453.f621e558.chunk.js.map": "/telkonlingo/static/js/453.f621e558.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b4e0889.css",
-    "static/js/main.8c67a82c.js"
+    "static/js/main.64abf78b.js"
   ]
 }
