@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/telkonlingo/static/css/main.5b4e0889.css",
-    "main.js": "/telkonlingo/static/js/main.64abf78b.js",
+    "main.css": "/telkonlingo/static/css/main.0901fed1.css",
+    "main.js": "/telkonlingo/static/js/main.1d7a7559.js",
     "static/js/453.f621e558.chunk.js": "/telkonlingo/static/js/453.f621e558.chunk.js",
     "index.html": "/telkonlingo/index.html",
-    "main.5b4e0889.css.map": "/telkonlingo/static/css/main.5b4e0889.css.map",
-    "main.64abf78b.js.map": "/telkonlingo/static/js/main.64abf78b.js.map",
+    "main.0901fed1.css.map": "/telkonlingo/static/css/main.0901fed1.css.map",
+    "main.1d7a7559.js.map": "/telkonlingo/static/js/main.1d7a7559.js.map",
     "453.f621e558.chunk.js.map": "/telkonlingo/static/js/453.f621e558.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b4e0889.css",
-    "static/js/main.64abf78b.js"
+    "static/css/main.0901fed1.css",
+    "static/js/main.1d7a7559.js"
   ]
 }
