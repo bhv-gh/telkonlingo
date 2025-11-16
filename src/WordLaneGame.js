@@ -4,6 +4,8 @@ import './WordLaneGame.css'; // Note: CSS file is also significantly updated
 
 const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
 
+const GAME_DURATION = 120; // seconds
+
 const WordLaneGame = ({ data, settings }) => {
   const [gameWords, setGameWords] = useState([]);
   const [wordTiles, setWordTiles] = useState([]);
@@ -12,12 +14,14 @@ const WordLaneGame = ({ data, settings }) => {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [lives, setLives] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(GAME_DURATION);
   const requestRef = useRef();
   const [draggedTile, setDraggedTile] = useState(null);
 
   const dictionary = useMemo(() => data.filter(item => item.Type === 'word'), [data]);
 
   const setupGame = useCallback(async () => {
+    setTimeLeft(GAME_DURATION);
     setLives(5);
     setScore(0);
 
@@ -51,6 +55,26 @@ const WordLaneGame = ({ data, settings }) => {
     }
   }, [dictionary, setupGame]);
 
+  useEffect(() => {
+    if (gameState !== 'playing') {
+      return;
+    }
+
+    if (timeLeft <= 0) {
+      setGameState('gameOver');
+      if (score > highScore) {
+        setHighScore(score);
+        localforage.setItem('telkonlingoHighScore', score);
+      }
+      return;
+    }
+
+    const timerId = setInterval(() => {
+      setTimeLeft(prev => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, [gameState, timeLeft, score, highScore]);
   // --- Drag and Drop Handlers ---
   const handleDragStart = (e, tile) => {
     e.dataTransfer.setData('application/json', JSON.stringify(tile));
@@ -71,6 +95,7 @@ const WordLaneGame = ({ data, settings }) => {
 
     if (targetWord.English === draggedData.word.English) {
       // --- CORRECT DROP ---
+      setTimeLeft(prev => Math.min(GAME_DURATION, prev + 3)); // Add 3 seconds, capped at max duration
       setScore(prev => prev + 10);
       // Mark the word as matched to trigger the green feedback
       setGameWords(prev => prev.map(w => w.English === targetWord.English ? { ...w, matched: true } : w));
@@ -87,7 +112,11 @@ const WordLaneGame = ({ data, settings }) => {
         // Replace the matched word in the sequence bar with the new word
         setGameWords(prev => prev.map(w => w.English === targetWord.English ? { ...newWord, matched: false, passes: 0 } : w));
 
-        setWordTiles(prev => prev.map(t => t.id === draggedData.id ? { ...t, status: 'active', x: 110 + Math.random() * 50 } : t));
+        // Reset the tile with the new word
+        setWordTiles(prev => prev.map(t => 
+          t.id === draggedData.id 
+            ? { ...t, word: newWord, status: 'active', x: 110 + Math.random() * 50 } 
+            : t));
       }, 500);
     } else {
       // --- INCORRECT DROP ---
@@ -182,6 +211,10 @@ const WordLaneGame = ({ data, settings }) => {
           {Array.from({ length: 5 }).map((_, i) => <span key={i} className={`heart ${i < lives ? 'full' : 'empty'}`}>♥</span>)}
         </div>
         <div className="stat-item">Score: <span>{score}</span></div>
+        <div className="timer-container">
+          <div className="timer-bar" style={{ width: `${(timeLeft / GAME_DURATION) * 100}%` }}></div>
+          <span className="timer-text">{timeLeft}s</span>
+        </div>
         <div className="stat-item">High Score: <span>{highScore}</span></div>
       </div>
       <div className="game-lanes">

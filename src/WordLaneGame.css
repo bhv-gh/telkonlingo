@@ -21,6 +21,35 @@
     z-index: 15;
 }
 
+.timer-container {
+    position: relative;
+    width: 250px;
+    height: 28px;
+    background-color: #dee2e6;
+    border-radius: 14px;
+    border: 2px solid #adb5bd;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.timer-bar {
+    height: 100%;
+    background: linear-gradient(to right, #28a745, #218838);
+    border-radius: 12px 0 0 12px;
+    transition: width 0.2s linear;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.7);
+}
+
+.timer-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
 .lives-container {
     font-size: 1.2em;
     font-weight: 600;
