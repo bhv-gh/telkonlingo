@@ -1,0 +1,19 @@
+/* Using styles from BatchAddModal.css for consistency */
+/* .modal-overlay, .modal-content, .modal-header, .close-button, .modal-footer, .secondary-button */
+
+.confirmation-modal {
+    max-width: 450px;
+}
+
+.confirmation-modal .modal-body p {
+    font-size: 1.1em;
+    color: #495057;
+    margin: 0;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.confirmation-modal .modal-footer {
+    justify-content: center;
+    gap: 20px;
+}

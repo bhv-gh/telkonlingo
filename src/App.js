@@ -4,7 +4,9 @@ import FileUpload from './components/FileUpload/FileUpload';
 import DataTable from './components/DataTable/DataTable';
 import AddEntryForm from './components/AddEntryForm/AddEntryForm';
 import Search from './Search';
+import BatchAddModal from './components/BatchAddModal';
 import Learn from './Learn';
+import ConfirmationModal from './components/ConfirmationModal';
 import SettingsModal from './SettingsModal';
 import { parseCSV } from './utils';
 import localforage from 'localforage';
@@ -15,6 +17,9 @@ function App() {
   const [activeTab, setActiveTab] = useState('dictionary');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isBatchAddOpen, setIsBatchAddOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
   const [settings, setSettings] = useState({
     learningLanguage: 'Konkani', // Default language
   });
@@ -48,16 +53,32 @@ function App() {
   };
 
   const handleAddEntry = (entry) => {
-    const newData = [...data, entry];
+    const newData = [entry, ...data];
+    setData(newData);
+    localforage.setItem('telkonlingoData', newData);
+  };
+
+  const handleBatchAdd = (entries) => {
+    const newData = [...entries, ...data];
     setData(newData);
     localforage.setItem('telkonlingoData', newData);
   };
 
   const handleDeleteEntry = (indexToDelete) => {
-    const newData = data.filter((_, index) => index !== indexToDelete);
+    const item = searchResults[indexToDelete];
+    setItemToDelete(item);
+    setIsConfirmModalOpen(true);
+  };
+
+  const executeDelete = () => {
+    if (!itemToDelete) return;
+    const originalIndex = data.findIndex(item => item.English === itemToDelete.English && item.Telugu === itemToDelete.Telugu && item.Konkani === itemToDelete.Konkani);
+    const newData = data.filter((_, index) => index !== originalIndex);
     setData(newData);
     localforage.setItem('telkonlingoData', newData);
-  };
+    setIsConfirmModalOpen(false);
+    setItemToDelete(null);
+  }
 
   const handleUpdateEntry = (rowIndex, column, value) => {
     const newData = [...data];
@@ -114,8 +135,13 @@ function App() {
         {activeTab === 'dictionary' && (
           <div className="dictionary-container">
             <div className="dictionary-left-column">
-              <AddEntryForm onAddEntry={handleAddEntry} />
-              <FileUpload onFileUpload={handleFileUpload} />
+              <div className="action-buttons-container">
+                <AddEntryForm onAddEntry={handleAddEntry} />
+                <button className="primary-button" onClick={() => setIsBatchAddOpen(true)}>
+                  Batch Add Phrases
+                </button>
+                <FileUpload onFileUpload={handleFileUpload} />
+              </div>
             </div>
             <div className="dictionary-right-column">
               <Search
@@ -141,6 +167,18 @@ function App() {
         onClose={() => setIsSettingsOpen(false)}
         settings={settings}
         onSettingsChange={handleSettingsChange}
+      />
+      <BatchAddModal
+        isOpen={isBatchAddOpen}
+        onClose={() => setIsBatchAddOpen(false)}
+        onBatchAdd={handleBatchAdd}
+      />
+      <ConfirmationModal
+        isOpen={isConfirmModalOpen}
+        onClose={() => setIsConfirmModalOpen(false)}
+        onConfirm={executeDelete}
+        title="Confirm Deletion"
+        message={`Are you sure you want to permanently delete "${itemToDelete?.English}"? This action cannot be undone.`}
       />
     </div>
   );

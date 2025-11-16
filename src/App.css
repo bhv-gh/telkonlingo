@@ -90,3 +90,25 @@
 /* Generic button styles can live here if they are truly global, */
 /* but for now, component-specific buttons are styled in their own files. */
 /* This leaves App.css much cleaner. */
+
+.action-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Shared button styles */
+.danger-button {
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background-color: #dc3545;
+  color: white;
+}
+.danger-button:hover {
+  background-color: #c82333;
+}
