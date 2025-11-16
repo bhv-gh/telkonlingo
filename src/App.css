@@ -1,38 +1,67 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  padding: 0 40px;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  padding: 40px 0;
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 20px;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  color: #007bff; /* Professional Blue Accent */
+}
+
+.App-header p {
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #6c757d; /* Muted secondary text */
+  margin-bottom: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 40px 0;
+  overflow: auto;
+}
+
+.tab-nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-bottom: 1px solid #dee2e6;
 }
 
-.App-link {
-  color: #61dafb;
+.tab-button {
+  padding: 15px 30px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 1.1em;
+  color: #6c757d;
+  position: relative;
+  top: 1px; /* To align with the bottom border */
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s, border-bottom-color 0.3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tab-button:hover {
+  color: #0056b3;
+  background-color: transparent;
 }
+
+.tab-button.active {
+  color: #007bff;
+  border-bottom-color: #007bff;
+}
+
+.manage-dictionary-tab {
+  max-width: 500px;
+  margin: 0 auto;
+} 
+
+/* Generic button styles can live here if they are truly global, */
+/* but for now, component-specific buttons are styled in their own files. */
+/* This leaves App.css much cleaner. */

@@ -1,3 +1,22 @@
+# Telkonlingo Application
+
+I have completed the implementation of the Telkonlingo application. Here is a summary of the work I've done:
+
+*   **CSV Upload:** You can upload a CSV file with columns: English, Telugu, Konkani, and Type.
+*   **Local Storage:** The data from the uploaded CSV is stored in your browser's local storage.
+*   **Data Display:** The application displays the data in a clean and organized table.
+*   **Manual Entry:** You can manually add new entries to the dataset using the provided form.
+*   **Modular Components:** The application is built with modular React components for better organization and extensibility.
+*   **Styling:** The application is styled with CSS for a better user experience.
+
+## How to Run the Application
+
+1.  Open a terminal in the project's root directory.
+2.  Run the command `npm install` to install the dependencies.
+3.  Run the command `npm start` to start the development server.
+
+The application should then be accessible at [http://localhost:3000](http://localhost:3000) in your browser.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

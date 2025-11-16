@@ -1,0 +1,50 @@
+.file-upload {
+    background-color: #ffffff;
+    padding: 24px;
+    padding-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    text-align: center;
+}
+
+.file-upload h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.file-upload .upload-instructions {
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+/* Hide the default file input */
+.file-upload input[type="file"] {
+    display: none;
+}
+
+/* Style the label as a button */
+.file-upload-button {
+    display: inline-block;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+}
+
+.file-upload-button:hover {
+    background-color: #5a6268;
+}
+
+.file-name {
+    display: block;
+    margin-top: 15px;
+    color: #6c757d;
+    font-size: 0.9em;
+}
